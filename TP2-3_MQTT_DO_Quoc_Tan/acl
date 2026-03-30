@@ -1,0 +1,4 @@
+user user1
+topic readwrite test/#
+topic read maison/temperature
+
