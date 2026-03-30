@@ -26,10 +26,15 @@ chmod 644 *.crt *.csr
 
 ### Etape 5 - Configuration du Mosquitto (dans /etc/mosquitto/conf.d/mosquitto_MQTT.conf)
 listener 8883 
+
 cafile /etc/mosquitto/certs/ca.crt 
+
 certfile /etc/mosquitto/certs/broker.crt 
+
 keyfile /etc/mosquitto/certs/broker.key 
+
 require_certificate true 
+
 use_identity_as_username true 
 
 ### Etape 6 - TEST
