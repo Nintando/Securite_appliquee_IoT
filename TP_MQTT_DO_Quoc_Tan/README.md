@@ -12,10 +12,12 @@ openssl genrsa -out broker.key 2048
 openssl genrsa -out client.key 2048 
 
 openssl req -new -key broker.key -out broker.csr -subj "/C=FR/ST=Ile-de-France/L=Paris/O=IB/OU=IB-Data/CN=MQTT-test" 
+
 openssl req -new -key client.key -out client.csr -subj "/C=FR/ST=Ile-de-France/L=Paris/O=IB/OU=IB-Data/CN=iot-client-iba" 
 
 ### Etape 3 - Signature avec CA
 openssl x509 -req -in broker.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out broker.crt -days 365 
+
 openssl x509 -req -in client.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out client.crt -days 365 
 
 ### Etape 4 - Sécurisation Fichier
