@@ -40,12 +40,15 @@ use_identity_as_username true
 ### Etape 6 - TEST
 #### Avec certificat
 Sur un terminal :
+
 mosquitto_pub -h localhost -p 8883   --cafile certs/ca.crt   --cert certs/client.crt   --key client.key   -t "test/secured" -m "mTLS OK"
 
 Sur un autre terminal : 
+
 mosquitto_sub -h localhost -p 8883   --cafile certs/ca.crt   --cert certs/client.crt   --key client.key   -t "test/secured"
 
 Résultat :
+
 linux@linux-VirtualBox:~/IoT/formation-Jour2$ mosquitto_pub -h localhost -p 8883   --cafile certs/ca.crt   --cert certs/client.crt   --key client.key   -t "test/secured" -m "mTLS OK"
 
 linux@linux-VirtualBox:~/IoT/formation-Jour2$ mosquitto_sub -h localhost -p 8883   --cafile certs/ca.crt   --cert certs/client.crt   --key client.key   -t "test/secured"
@@ -54,6 +57,7 @@ mTLS OK
 
 #### Sans certificat
 linux@linux-VirtualBox:~/IoT/formation-Jour2$ mosquitto_pub -h localhost -p 8883 --cafile certs/ca.crt -t test -m "nope" 
+
 Error: Problem setting TLS options: File not found.
 
 
