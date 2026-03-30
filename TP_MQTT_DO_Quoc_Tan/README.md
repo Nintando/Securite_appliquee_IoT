@@ -51,11 +51,11 @@ mosquitto_sub -h localhost -p 8883   --cafile certs/ca.crt   --cert certs/client
 
 ***Résultat :***
 
+<img width="822" height="112" alt="image" src="https://github.com/user-attachments/assets/8a003f4b-b639-4788-a730-8fe611c4e0a6" />
 
-linux@linux-VirtualBox:~/IoT/formation-Jour2$ mosquitto_pub -h localhost -p 8883   --cafile certs/ca.crt   --cert certs/client.crt   --key client.key   -t "test/secured" -m "mTLS OK"
 
-linux@linux-VirtualBox:~/IoT/formation-Jour2$ mosquitto_sub -h localhost -p 8883   --cafile certs/ca.crt   --cert certs/client.crt   --key client.key   -t "test/secured"
-mTLS OK
+<img width="752" height="87" alt="image" src="https://github.com/user-attachments/assets/06e4d9da-5db5-466b-8ed2-43805642a6e1" />
+
 
 
 #### **Sans certificat**
