@@ -1,0 +1,11 @@
+Package: kmod-ppp
+Version: 5.15.150-1
+Depends: kernel (=5.15.150-1-34a8cffa541c94af8232fe9af7a1f5ba), kmod-lib-crc-ccitt, kmod-slhc
+Source: package/kernel/linux
+SourceName: kmod-ppp
+License: GPL-2.0
+Section: kernel
+SourceDateEpoch: 1709893690
+Architecture: mips_24kc
+Installed-Size: 23896
+Description:  Kernel modules for PPP support

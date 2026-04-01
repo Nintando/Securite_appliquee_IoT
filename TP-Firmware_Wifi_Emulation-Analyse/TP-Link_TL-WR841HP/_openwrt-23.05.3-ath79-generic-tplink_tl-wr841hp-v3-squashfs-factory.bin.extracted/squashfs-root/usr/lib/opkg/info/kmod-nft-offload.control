@@ -1,0 +1,11 @@
+Package: kmod-nft-offload
+Version: 5.15.150-1
+Depends: kernel (=5.15.150-1-34a8cffa541c94af8232fe9af7a1f5ba), kmod-nf-flow, kmod-nft-nat
+Source: package/kernel/linux
+SourceName: kmod-nft-offload
+License: GPL-2.0
+Section: kernel
+SourceDateEpoch: 1709893690
+Architecture: mips_24kc
+Installed-Size: 4627
+Description:  Netfilter nf_tables routing/NAT offload support

@@ -1,0 +1,11 @@
+Package: kmod-nft-fib
+Version: 5.15.150-1
+Depends: kernel (=5.15.150-1-34a8cffa541c94af8232fe9af7a1f5ba), kmod-nft-core
+Source: package/kernel/linux
+SourceName: kmod-nft-fib
+License: GPL-2.0
+Section: kernel
+SourceDateEpoch: 1709893690
+Architecture: mips_24kc
+Installed-Size: 5566
+Description:  Netfilter nf_tables fib support

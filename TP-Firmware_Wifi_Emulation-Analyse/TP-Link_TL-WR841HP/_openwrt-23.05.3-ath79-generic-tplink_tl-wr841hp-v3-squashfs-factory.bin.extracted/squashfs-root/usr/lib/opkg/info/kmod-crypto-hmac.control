@@ -1,0 +1,11 @@
+Package: kmod-crypto-hmac
+Version: 5.15.150-1
+Depends: kernel (=5.15.150-1-34a8cffa541c94af8232fe9af7a1f5ba), kmod-crypto-hash, kmod-crypto-manager
+Source: package/kernel/linux
+SourceName: kmod-crypto-hmac
+License: GPL-2.0
+Section: kernel
+SourceDateEpoch: 1709893690
+Architecture: mips_24kc
+Installed-Size: 2335
+Description:  HMAC digest CryptoAPI module

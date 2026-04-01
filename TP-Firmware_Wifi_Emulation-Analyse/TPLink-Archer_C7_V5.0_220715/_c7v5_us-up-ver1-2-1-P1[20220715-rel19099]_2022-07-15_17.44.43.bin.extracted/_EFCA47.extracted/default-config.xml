@@ -1,0 +1,2239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+<access_control>
+<global name="settings">
+<access_mode>black</access_mode>
+<enable>off</enable>
+</global>
+</access_control>
+<accountmgnt>
+<rsa name="keys">
+<e>010001</e>
+<d>091550E28B45A770B296EDAEEF04E687F3258AB765A22E7CEA9D1BC8EB10BD2A0601A4421D267FD5ED5BF25A7372B67FFAD6D41A81A194B67623617F0A86A28F3727A6EC0E34ACCA4823F486CB3E08D9BBC2D043D62CC943EF898EF7C74CDCD8E9CEA87006019D6464B7B2BA37043D911611580A7A87D862E6BEBE4AD96146B1</d>
+<n>D1E79FF135D14E342D76185C23024E6DEAD4D6EC2C317A526C811E83538EA4E5ED8E1B0EEE5CE26E3C1B6A5F1FE11FA804F28B7E8821CA90AFA5B2F300DF99FDA27C9D2131E031EA11463C47944C05005EF4C1CE932D7F4A87C7563581D9F27F0C305023FCE94997EC7D790696E784357ED803A610EBB71B12A8BE5936429BFD</n>
+</rsa>
+<account name="admin">
+<username>admin</username>
+</account>
+</accountmgnt>
+<administration>
+<global name="account">
+<recovery>off</recovery>
+<authentication>off</authentication>
+</global>
+<global name="local">
+<mode>all</mode>
+</global>
+<global name="remote">
+<enable>off</enable>
+<port>80</port>
+</global>
+<global name="login">
+<preempt>off</preempt>
+</global>
+</administration>
+<appflow>
+<stage name="tccontroller">
+<ifup>eth0.2</ifup>
+<enable_auto>0</enable_auto>
+<enable_streamboost>0</enable_streamboost>
+<downlimit_auto>0</downlimit_auto>
+<uplimit_auto>0</uplimit_auto>
+<ifdown>br-lan</ifdown>
+<daemon>1</daemon>
+<downlimit>125000000</downlimit>
+<uplimit>125000000</uplimit>
+<listen_path>/var/run/appflow/tccpipe</listen_path>
+</stage>
+<policy name="policy">
+<enable>1</enable>
+</policy>
+<bigdata name="bigdata">
+<enable>1</enable>
+</bigdata>
+</appflow>
+<basic_security>
+<global name="settings">
+<lan_ping>on</lan_ping>
+<spi_enable>on</spi_enable>
+<remote_access_brlan>off</remote_access_brlan>
+<wan_ping>on</wan_ping>
+<lan_ip_limit>on</lan_ip_limit>
+</global>
+</basic_security>
+<ddns>
+<service name="dyndns">
+<enabled>off</enabled>
+<force_unit>hours</force_unit>
+<ip_network>wan</ip_network>
+<service_name>dyndns.org</service_name>
+<ip_source>network</ip_source>
+<check_unit>hours</check_unit>
+<retry_interval>60</retry_interval>
+<retry_unit>seconds</retry_unit>
+<check_interval>1</check_interval>
+<force_interval>72</force_interval>
+<retry_times>5</retry_times>
+<interface>wan</interface>
+</service>
+<service name="noip">
+<enabled>off</enabled>
+<force_unit>hours</force_unit>
+<ip_network>wan</ip_network>
+<service_name>noip.com</service_name>
+<ip_source>network</ip_source>
+<check_unit>hours</check_unit>
+<retry_interval>60</retry_interval>
+<retry_unit>seconds</retry_unit>
+<check_interval>1</check_interval>
+<force_interval>72</force_interval>
+<retry_times>5</retry_times>
+<interface>wan</interface>
+<wan_bind>disable</wan_bind>
+</service>
+</ddns>
+<dhcp>
+<dnsmasq name="dnsmasq">
+<readethers>1</readethers>
+<expandhosts>1</expandhosts>
+<boguspriv>1</boguspriv>
+<localise_queries>1</localise_queries>
+<nonegcache>0</nonegcache>
+<resolvfile>/tmp/resolv.conf.auto</resolvfile>
+<rebind_localhost>1</rebind_localhost>
+<domain></domain>
+<rebind_protection>0</rebind_protection>
+<filterwin2k>0</filterwin2k>
+<local>/lan/</local>
+<authoritative>1</authoritative>
+<domainneeded>1</domainneeded>
+<leasefile>/tmp/dhcp.leases</leasefile>
+</dnsmasq>
+<dhcp name="lan">
+<ignore>0</ignore>
+<force>1</force>
+<limit>150</limit>
+<leasetime>120m</leasetime>
+<start>100</start>
+<interface>lan</interface>
+<list>
+<dhcp_option>3,192.168.0.1</dhcp_option>
+</list>
+</dhcp>
+<dhcp name="wan">
+<ignore>1</ignore>
+<interface>wan</interface>
+</dhcp>
+</dhcp>
+<diagnostic>
+<default name="params">
+<count>4</count>
+<pktsize>64</pktsize>
+<timeout>800</timeout>
+<ttl>20</ttl>
+</default>
+</diagnostic>
+<domain_login>
+<default name="tp_domain">
+<list>
+<alias>tplinklogin.net</alias>
+</list>
+<old_mask>255.255.255.0</old_mask>
+<old_addr>192.168.0.1</old_addr>
+<new_addr>192.168.0.1</new_addr>
+<conflict>off</conflict>
+<domain>tplinkwifi.net</domain>
+</default>
+</domain_login>
+<download_item>
+</download_item>
+<dnsproxy>
+<default name="dnsproxy">
+<query_timeout>5</query_timeout>
+<enable>on</enable>
+<check_interval>30</check_interval>
+<domains>a.root-servers.net www.tp-link.com</domains>
+<retry_times>3</retry_times>
+</default>
+</dnsproxy>
+<dos_protection>
+<global name="settings">
+<syn_level>off</syn_level>
+<syn_low>200</syn_low>
+<enable>off</enable>
+<syn_middle>100</syn_middle>
+<icmp_curr>0</icmp_curr>
+<time>5</time>
+<udp_level>off</udp_level>
+<icmp_middle>20</icmp_middle>
+<icmp_high>10</icmp_high>
+<icmp_low>50</icmp_low>
+<udp_high>400</udp_high>
+<udp_middle>2000</udp_middle>
+<udp_curr>0</udp_curr>
+<udp_low>7200</udp_low>
+<syn_high>50</syn_high>
+<syn_curr>0</syn_curr>
+<icmp_level>off</icmp_level>
+</global>
+</dos_protection>
+<dropbear>
+<dropbear name="dropbear">
+<RootPasswordAuth>on</RootPasswordAuth>
+<Port>22</Port>
+<PasswordAuth>on</PasswordAuth>
+<SysAccountLogin>off</SysAccountLogin>
+</dropbear>
+</dropbear>
+<firewall>
+<defaults name="firewall_default">
+<syn_flood>1</syn_flood>
+<output>ACCEPT</output>
+<disable_ipv6>0</disable_ipv6>
+<input>ACCEPT</input>
+<forward>DROP</forward>
+</defaults>
+<zone name="zone_lan">
+<network>lan</network>
+<output>ACCEPT</output>
+<name>lan</name>
+<input>ACCEPT</input>
+<forward>DROP</forward>
+</zone>
+<zone name="zone_wan">
+<network>wan internet wanv6 vpn mobile</network>
+<output>ACCEPT</output>
+<name>wan</name>
+<input>DROP</input>
+<forward>DROP</forward>
+<masq>1</masq>
+<mtu_fix>1</mtu_fix>
+</zone>
+<forwarding name="lan_to_wan">
+<dest>wan</dest>
+<src>lan</src>
+</forwarding>
+<rule name="allow_dhcp">
+<dest_port>68</dest_port>
+<name>Allow-DHCP-Renew</name>
+<family>ipv4</family>
+<target>ACCEPT</target>
+<proto>udp</proto>
+<src>wan</src>
+</rule>
+<include name="include_usr">
+<path>/etc/firewall.user</path>
+</include>
+<include name="miniupnpd">
+<path>/usr/share/miniupnpd/firewall.include</path>
+<family>IPv4</family>
+<type>script</type>
+<reload>1</reload>
+</include>
+<include name="qcanssconnmgr">
+<path>/etc/firewall.d/qca-nss-connmgr</path>
+<family>any</family>
+<type>script</type>
+<reload>1</reload>
+</include>
+</firewall>
+<fstab>
+<global name="automount">
+<anon_mount>1</anon_mount>
+<from_fstab>1</from_fstab>
+</global>
+<global name="autoswap">
+<anon_swap>0</anon_swap>
+<from_fstab>1</from_fstab>
+</global>
+<mount name="mount">
+<options>rw,sync</options>
+<device>/dev/sda1</device>
+<enabled_fsck>0</enabled_fsck>
+<target>/overlay</target>
+<enabled>0</enabled>
+<fstype>ext4</fstype>
+</mount>
+<swap name="swap">
+<device>/dev/sda2</device>
+<enabled>0</enabled>
+</swap>
+</fstab>
+<igmpproxy>
+<igmpproxy>
+<quickleave>1</quickleave>
+</igmpproxy>
+<phyint>
+<network>wan</network>
+<list>
+<altnet>192.168.1.0/24</altnet>
+</list>
+<direction>upstream</direction>
+</phyint>
+<phyint>
+<network>lan</network>
+<direction>downstream</direction>
+</phyint>
+</igmpproxy>
+<imb>
+<default name="switch">
+<enable>off</enable>
+</default>
+</imb>
+<ledctrl>
+<rule name="LAN1_ON">
+<ledname>LAN1</ledname>
+<style>default</style>
+<ledon>1</ledon>
+</rule>
+<rule name="LAN1_OFF">
+<ledname>LAN1</ledname>
+<style>default</style>
+<ledon>0</ledon>
+</rule>
+<rule name="LAN2_ON">
+<ledname>LAN2</ledname>
+<style>default</style>
+<ledon>1</ledon>
+</rule>
+<rule name="LAN2_OFF">
+<ledname>LAN2</ledname>
+<style>default</style>
+<ledon>0</ledon>
+</rule>
+<rule name="LAN3_ON">
+<ledname>LAN3</ledname>
+<style>default</style>
+<ledon>1</ledon>
+</rule>
+<rule name="LAN3_OFF">
+<ledname>LAN3</ledname>
+<style>default</style>
+<ledon>0</ledon>
+</rule>
+<rule name="LAN4_ON">
+<ledname>LAN4</ledname>
+<style>default</style>
+<ledon>1</ledon>
+</rule>
+<rule name="LAN4_OFF">
+<ledname>LAN4</ledname>
+<style>default</style>
+<ledon>0</ledon>
+</rule>
+<rule name="USB1_ON">
+<ledname>USB1</ledname>
+<style>default</style>
+<ledon>1</ledon>
+</rule>
+<rule name="USB1_OFF">
+<ledname>USB1</ledname>
+<style>default</style>
+<ledon>0</ledon>
+</rule>
+<rule name="USB2_ON">
+<ledname>USB2</ledname>
+<style>default</style>
+<ledon>1</ledon>
+</rule>
+<rule name="USB2_OFF">
+<ledname>USB2</ledname>
+<style>default</style>
+<ledon>0</ledon>
+</rule>
+<rule name="WIFI2G_ON">
+<ledname>WIFI_2G</ledname>
+<style>default</style>
+<ledon>1</ledon>
+</rule>
+<rule name="WIFI2G_OFF">
+<ledname>WIFI_2G</ledname>
+<style>default</style>
+<ledon>0</ledon>
+</rule>
+<rule name="WIFI5G_ON">
+<ledname>WIFI_5G</ledname>
+<style>default</style>
+<ledon>1</ledon>
+</rule>
+<rule name="WIFI5G_OFF">
+<ledname>WIFI_5G</ledname>
+<style>default</style>
+<ledon>0</ledon>
+</rule>
+<rule name="WAN0_ON">
+<ledname>WAN_LINK</ledname>
+<style>default</style>
+<ledon>1</ledon>
+</rule>
+<rule name="WAN0_OFF">
+<ledname>WAN_LINK</ledname>
+<style>default</style>
+<ledon>0</ledon>
+</rule>
+<rule name="WAN1_ON">
+<ledname>WAN_INET</ledname>
+<style>default</style>
+<ledon>1</ledon>
+</rule>
+<rule name="WAN1_OFF">
+<ledname>WAN_INET</ledname>
+<style>default</style>
+<ledon>0</ledon>
+</rule>
+<rule name="STATUS_ON">
+<ledname>STATUS</ledname>
+<style>default</style>
+<ledon>1</ledon>
+</rule>
+<rule name="STATUS_OFF">
+<ledname>STATUS</ledname>
+<style>default</style>
+<ledon>0</ledon>
+</rule>
+<rule name="STATUS_BLINK">
+<ledname>STATUS</ledname>
+<style>blink</style>
+<delayon>350</delayon>
+<delayoff>350</delayoff>
+</rule>
+<rule name="STATUS_CALIBRATE">
+<ledname>STATUS</ledname>
+<style>blink</style>
+<delayon>150</delayon>
+<delayoff>150</delayoff>
+</rule>
+<rule name="WPS_ON">
+<ledname>WPS</ledname>
+<style>default</style>
+<ledon>1</ledon>
+</rule>
+<rule name="WPS_OFF">
+<ledname>WPS</ledname>
+<style>default</style>
+<ledon>0</ledon>
+</rule>
+<rule name="WPS_SUCCESS">
+<ledname>WPS</ledname>
+<style>blink</style>
+<delayon>300000</delayon>
+<delayoff>0</delayoff>
+<duration>300000</duration>
+</rule>
+<rule name="WPS_ERROR">
+<ledname>WPS</ledname>
+<style>blink</style>
+<delayon>250</delayon>
+<delayoff>250</delayoff>
+<duration>60000</duration>
+</rule>
+<rule name="WPS_OVERLAP_TP">
+<ledname>WPS</ledname>
+<style>mix</style>
+<delayon>250</delayon>
+<delayoff>250</delayoff>
+<period>2000</period>
+<interval>500</interval>
+<duration>30000</duration>
+</rule>
+<rule name="WPS_INPROGRESS">
+<ledname>WPS</ledname>
+<style>blink</style>
+<delayon>2000</delayon>
+<delayoff>1000</delayoff>
+<duration>120000</duration>
+</rule>
+<rule name="WPS_LED">
+<start>on</start>
+<style>auto</style>
+<apps>wps_led</apps>
+</rule>
+<rule name="SHIFT_CHECK">
+<ledname>SHIFT</ledname>
+<style>blink</style>
+<delayon>10</delayon>
+<delayoff>10</delayoff>
+</rule>
+<rule name="NIGHT">
+<ledname>NIGHT</ledname>
+<enable>off</enable>
+<map>0</map>
+</rule>
+<rule name="GENERAL">
+<ledname>GENERAL</ledname>
+<enable>on</enable>
+<map>0</map>
+</rule>
+</ledctrl>
+<ledpm>
+<global name="leds">
+<enable>off</enable>
+<time_start>22:00</time_start>
+<time_end>06:00</time_end>
+<interval>1</interval>
+</global>
+</ledpm>
+<locale>
+<global name="sysinfo">
+<model>Archer C7 v5</model>
+<default>en_US</default>
+<force>false</force>
+<locale>en_US</locale>
+<country></country>
+</global>
+</locale>
+<theme>
+<global name="sysinfo">
+<curtheme>green</curtheme>
+<force>false</force>
+</global>
+</theme>
+<luci>
+<core name="main">
+<mediaurlbase>/luci-static/killersteel</mediaurlbase>
+<resourcebase>/luci-static/resources</resourcebase>
+<lang>auto</lang>
+</core>
+<extern name="flash_keep">
+<openvpn>/etc/openvpn/</openvpn>
+<uci>/etc/config/</uci>
+<dropbear>/etc/dropbear/</dropbear>
+<firewall>/etc/firewall.user</firewall>
+<uploads>/lib/uci/upload/</uploads>
+<opkg>/etc/opkg.conf</opkg>
+<passwd>/etc/passwd</passwd>
+</extern>
+<internal name="languages">
+<en>English</en>
+</internal>
+<internal name="sauth">
+<maxclients>1</maxclients>
+<sessionpath>/tmp/luci-sessions</sessionpath>
+<sessiontime>600</sessiontime>
+</internal>
+<internal name="ccache">
+<enable>1</enable>
+</internal>
+<internal name="themes">
+<OpenWrt>/luci-static/openwrt.org</OpenWrt>
+<Killer>/luci-static/killersteel</Killer>
+</internal>
+</luci>
+<minidlna>
+<minidlna name="config">
+<strict_dlna>0</strict_dlna>
+<enable_tivo>0</enable_tivo>
+<port>8200</port>
+<interface>br-lan</interface>
+<db_dir>/var/run/minidlna</db_dir>
+<inotify>1</inotify>
+<list>
+<media_dir>/mnt</media_dir>
+</list>
+<log_dir>/var/log</log_dir>
+<album_art_names>Cover.jpg/cover.jpg/AlbumArtSmall.jpg/albumartsmall.jpg/AlbumArt.jpg/albumart.jpg/Album.jpg/album.jpg/Folder.jpg/folder.jpg/Thumb.jpg/thumb.jpg</album_art_names>
+<root_container>.</root_container>
+<enabled>1</enabled>
+<notify_interval>900</notify_interval>
+<model_number>1.0</model_number>
+<friendly_name>Archer C7 v5 DLNA Server</friendly_name>
+<serial>12345678</serial>
+<presentation_url>http://tplinkwifi.net</presentation_url>
+</minidlna>
+</minidlna>
+<nat>
+<default name="nat">
+<zones>lan wan</zones>
+<norder>https http vpn ftp vs pt dns</norder>
+<list>
+<network>lan-lan</network>
+<network>wan-wan</network>
+<network>wan-internet</network>
+<network>wan-mobile</network>
+</list>
+</default>
+<nat_global name="nat_global">
+<enable>on</enable>
+<boost_enable>on</boost_enable>
+<hnat_enable>on</hnat_enable>
+</nat_global>
+<nat_dmz name="dmz">
+<name>dmz01</name>
+<enable>off</enable>
+</nat_dmz>
+<nat_alg name="alg">
+<rtsp>on</rtsp>
+<sip>on</sip>
+<pptp>on</pptp>
+<l2tp>on</l2tp>
+<tftp>on</tftp>
+<ftp>on</ftp>
+<h323>on</h323>
+<ipsec>on</ipsec>
+</nat_alg>
+</nat>
+<offline_download>
+<offline_download name="global">
+<uuid></uuid>
+<path></path>
+<enable>off</enable>
+</offline_download>
+<aria2 name="aria2">
+<enable>off</enable>
+<aria2c_priority>15</aria2c_priority>
+<max_download_result>10</max_download_result>
+<bt_hash_check_seed>false</bt_hash_check_seed>
+<hash_check_only>true</hash_check_only>
+<max_concurrent_downloads>10</max_concurrent_downloads>
+<continue>true</continue>
+<file_allocation>none</file_allocation>
+<bt_enable_lpd>true</bt_enable_lpd>
+<enable_dht>true</enable_dht>
+<follow_torrent>false</follow_torrent>
+<user>root</user>
+<dir>/mnt/sda4</dir>
+<min_split_size>5M</min_split_size>
+<save_session_interval>30</save_session_interval>
+<rpc_listen_port>6898</rpc_listen_port>
+<disk_cache>16M</disk_cache>
+<max_overall_download_limit>1024K</max_overall_download_limit>
+<max_overall_upload_limit>128K</max_overall_upload_limit>
+<connect_timeout>120</connect_timeout>
+<timeout>120</timeout>
+<bt_stop_timeout>600</bt_stop_timeout>
+<bt_tracker_connect_timeout>40</bt_tracker_connect_timeout>
+<bt_tracker_timeout>120</bt_tracker_timeout>
+<bt_tracker_interval>60</bt_tracker_interval>
+<limit_enable>on</limit_enable>
+<bt_port>6899</bt_port>
+<seed_ratio>0</seed_ratio>
+<seed_time>0</seed_time>
+<bt_min_crypto_level>arc4</bt_min_crypto_level>
+<bt_force_encryption>false</bt_force_encryption>
+<enable_peer_exchange>true</enable_peer_exchange>
+<bt_max_peers>50</bt_max_peers>
+<bt_max_open_files>200</bt_max_open_files>
+</aria2>
+<offline_download name="amule">
+<max_concurrent_downloads>10</max_concurrent_downloads>
+<limit_enable>off</limit_enable>
+<serverip>91.200.42.46</serverip>
+<serverport>1176</serverport>
+<tcpport>4662</tcpport>
+<udpport>4672</udpport>
+<cryptkey></cryptkey>
+<userid></userid>
+</offline_download>
+<offline_download name="advanced">
+<schedule_enable>off</schedule_enable>
+<seed_enable>off</seed_enable>
+<max_download>5120</max_download>
+<max_upload>512</max_upload>
+<max_active_num>5</max_active_num>
+</offline_download>
+</offline_download>
+<parental_control_v2>
+<global name="settings">
+<enable>on</enable>
+</global>
+</parental_control_v2>
+<yandex_dns>
+<global name="settings">
+<mode>disable</mode>
+<enable>off</enable>
+</global>
+</yandex_dns>
+<qos_v2>
+<global name="settings">
+<enable>off</enable>
+<up_band>1000</up_band>
+<down_band>1000</down_band>
+<up_unit>mbps</up_unit>
+<down_unit>mbps</down_unit>
+<high>90</high>
+<low>10</low>
+</global>
+</qos_v2>
+<quicksetup>
+<global name="quick_setup">
+<to_show>true</to_show>
+</global>
+</quicksetup>
+<radvd>
+<interface name="radvd_interface">
+<AdvManagedFlag>0</AdvManagedFlag>
+<AdvSendAdvert>1</AdvSendAdvert>
+<ignore>1</ignore>
+<list>
+<client></client>
+</list>
+<AdvOtherConfigFlag>0</AdvOtherConfigFlag>
+<interface>lan</interface>
+</interface>
+<prefix name="radvd_prefix">
+<AdvRouterAddr>0</AdvRouterAddr>
+<AdvAutonomous>1</AdvAutonomous>
+<ignore>1</ignore>
+<list>
+<prefix></prefix>
+</list>
+<AdvOnLink>1</AdvOnLink>
+<interface>lan</interface>
+</prefix>
+<route name="radvd_route">
+<list>
+<prefix></prefix>
+</list>
+<ignore>1</ignore>
+<interface>lan</interface>
+</route>
+<rdnss name="radvd_rdnss">
+<ignore>1</ignore>
+<list>
+<addr></addr>
+</list>
+<interface>lan</interface>
+</rdnss>
+<dnssl name="radvd_dnssl">
+<list>
+<suffix></suffix>
+</list>
+<ignore>1</ignore>
+<interface>lan</interface>
+</dnssl>
+</radvd>
+<ripd>
+<ripd name="config">
+<version>2</version>
+<redistribute>kernel</redistribute>
+<enable>0</enable>
+</ripd>
+<rip-interface name="rip_lan">
+<name>lan</name>
+<send_version>2</send_version>
+<receive_version>2</receive_version>
+</rip-interface>
+<rip-interface name="rip_wan">
+<name>wan</name>
+<send_version>2</send_version>
+<receive_version>2</receive_version>
+</rip-interface>
+</ripd>
+<samba>
+<samba>
+<name>Archer C7 v5</name>
+<description>samba server</description>
+<workgroup>WORKGROUP</workgroup>
+<homes>0</homes>
+</samba>
+<sambashare name="sambashare">
+<name>mnt</name>
+<guest_ok>yes</guest_ok>
+<path>/mnt</path>
+<read_only>no</read_only>
+</sambashare>
+</samba>
+<system>
+<system name="system">
+<log_size>128</log_size>
+<hostname>ArcherC7v5</hostname>
+<timezone>GMT-00:00</timezone>
+<hour24_enable>off</hour24_enable>
+<factory_setting>yes</factory_setting>
+<restore_time>86</restore_time>
+<firmwareUp_time>200</firmwareUp_time>
+</system>
+<timeserver name="ntp">
+<enable_server>0</enable_server>
+<type>auto</type>
+<list>
+<server>time.nist.gov</server>
+<server>time-nw.nist.gov</server>
+<server>time.windows.com</server>
+<server>time-a.nist.gov</server>
+<server>time-b.nist.gov</server>
+</list>
+</timeserver>
+<dst name="dst">
+<dst_enable>off</dst_enable>
+<start_month>Mar</start_month>
+<start_week>2nd</start_week>
+<start_day>Sun</start_day>
+<start_hour>2am</start_hour>
+<end_month>Nov</end_month>
+<end_week>1st</end_week>
+<end_day>Sun</end_day>
+<end_hour>2am</end_hour>
+</dst>
+</system>
+<autoreboot>
+<default name="reboot">
+<enable>off</enable>
+<time>03:00</time>
+<cycle>week</cycle>
+<day>Mon</day>
+</default>
+</autoreboot>
+<tfstats>
+<default name="switch">
+<enable>off</enable>
+</default>
+</tfstats>
+<ucitrack>
+<network>
+<init>network</init>
+<exec>/usr/local/bin/jiggle_firewall</exec>
+<list>
+<affects>dhcp</affects>
+<affects>radvd</affects>
+</list>
+</network>
+<wireless>
+<init>wireless</init>
+</wireless>
+<firewall>
+<init>firewall</init>
+<list>
+<affects>luci-splash</affects>
+<affects>qos</affects>
+<affects>miniupnpd</affects>
+</list>
+</firewall>
+<olsr>
+<init>olsrd</init>
+</olsr>
+<dhcp>
+<init>dnsmasq</init>
+</dhcp>
+<dropbear>
+<init>dropbear</init>
+</dropbear>
+<httpd>
+<init>httpd</init>
+</httpd>
+<fstab>
+<init>fstab</init>
+</fstab>
+<qos>
+<init>qos</init>
+</qos>
+<system>
+<init>led</init>
+<list>
+<affects>luci_statistics</affects>
+</list>
+</system>
+<luci_splash>
+<init>luci_splash</init>
+</luci_splash>
+<upnpd>
+<init>miniupnpd</init>
+</upnpd>
+<ntpclient>
+<init>ntpclient</init>
+</ntpclient>
+<samba>
+<init>samba</init>
+</samba>
+<tinyproxy>
+<init>tinyproxy</init>
+</tinyproxy>
+<appflow>
+<exec>/usr/local/bin/apply_appflow</exec>
+</appflow>
+</ucitrack>
+<uhttpd>
+<uhttpd name="main">
+<cgi_prefix>/cgi-bin</cgi_prefix>
+<list>
+<listen_https>0.0.0.0:443</listen_https>
+</list>
+<list>
+<listen_http>0.0.0.0:80</listen_http>
+</list>
+<cert>/etc/uhttpd.crt</cert>
+<tcp_keepalive>1</tcp_keepalive>
+<network_timeout>30</network_timeout>
+<rfc1918_filter>0</rfc1918_filter>
+<no_dirlists>1</no_dirlists>
+<script_timeout>180</script_timeout>
+<key>/etc/uhttpd.key</key>
+<ciphers>ALL:+AES256:!DES:!3DES:!aNULL:!MD5:!SSLv2:!SSLv3:!TLSv1:!RC4</ciphers>
+<max_connections>16</max_connections>
+<home>/www</home>
+</uhttpd>
+<cert name="TP_Cert">
+<country>CN</country>
+<commonname>tplinkwifi.net</commonname>
+<state>GD</state>
+<location>ShenZhen</location>
+<days>1825</days>
+<bits>2048</bits>
+</cert>
+</uhttpd>
+<upnpd>
+<upnpd name="config">
+<secure_mode>1</secure_mode>
+<internal_iface>lan</internal_iface>
+<enable_upnp>1</enable_upnp>
+<download>1024</download>
+<uuid>e4c797e0-82ce-4f84-b56d-085d9d77c8cd</uuid>
+<upnp_lease_file>/var/upnp.leases</upnp_lease_file>
+<port>1900</port>
+<upload>512</upload>
+<external_iface>wan</external_iface>
+<log_output>0</log_output>
+<enable_natpmp>1</enable_natpmp>
+<manufacturer>TP-Link</manufacturer>
+<manufacturer_url>http://www.tp-link.com/</manufacturer_url>
+<model_description>ArcherC7v5</model_description>
+<model_name>ArcherC7v5</model_name>
+<model_number>1.0</model_number>
+<model_url>http://www.tp-link.com/</model_url>
+<friendly_name>ArcherC7v5</friendly_name>
+<serial_number>12345678</serial_number>
+<presentation_url>http://tplinkwifi.net</presentation_url>
+</upnpd>
+<perm_rule name="default1">
+<action>allow</action>
+<int_addr>0.0.0.0/0</int_addr>
+<ext_ports>0-65535</ext_ports>
+<comment>Allow high ports</comment>
+<int_ports>0-65535</int_ports>
+</perm_rule>
+<perm_rule name="default2">
+<action>deny</action>
+<int_addr>0.0.0.0/0</int_addr>
+<ext_ports>0-65535</ext_ports>
+<comment>Default deny</comment>
+<int_ports>0-65535</int_ports>
+</perm_rule>
+</upnpd>
+<usbshare>
+<usbshare name="global">
+<svrname>TP-Share</svrname>
+<dlna>on</dlna>
+<ftp>on</ftp>
+<ftpex>off</ftpex>
+<ftpex_port>21</ftpex_port>
+<printer>on</printer>
+<samba>on</samba>
+<share_all>on</share_all>
+<auth_all>off</auth_all>
+</usbshare>
+<usbshare name="account">
+<password>admin</password>
+<username>admin</username>
+<use_login_user>on</use_login_user>
+</usbshare>
+</usbshare>
+<syslog>
+<filter name="filter">
+<type>ALL</type>
+<level>ALL</level>
+</filter>
+<mail name="mail">
+<every_hours>24</every_hours>
+<auto_mail>off</auto_mail>
+<every_day_time>00:00</every_day_time>
+<auto_mail_type>day_time</auto_mail_type>
+<auth>off</auth>
+</mail>
+</syslog>
+<network>
+<device name="dev_lan">
+<name>eth0</name>
+<keepup>1</keepup>
+</device>
+<device>
+<name>eth0.4094</name>
+<keepup>1</keepup>
+</device>
+<interface name="loopback">
+<ipaddr>127.0.0.1</ipaddr>
+<proto>static</proto>
+<netmask>255.0.0.0</netmask>
+<ifname>lo</ifname>
+</interface>
+<interface name="lan">
+<ipaddr>192.168.0.1</ipaddr>
+<netmask>255.255.255.0</netmask>
+<igmp_snooping>0</igmp_snooping>
+<proto>static</proto>
+<type>bridge</type>
+<ifname>eth0.1</ifname>
+<gateway></gateway>
+<lan_type>dynamic</lan_type>
+</interface>
+<interface name="wan">
+<wan_type>dhcp</wan_type>
+<proto>dhcp</proto>
+<ifname>eth0.4094</ifname>
+<connectable>1</connectable>
+<keepup>1</keepup>
+<auto>0</auto>
+<mtu>1500</mtu>
+<peerdns>1</peerdns>
+<hostname>Archer_C7</hostname>
+<conn_mode>auto</conn_mode>
+<broadcast>1</broadcast>
+</interface>
+<interface name="wanv6">
+</interface>
+</network>
+<switch>
+<switch name="switch0">
+<name>switch0</name>
+<enable_vlan>1</enable_vlan>
+<reset>1</reset>
+</switch>
+<switch_vlan name="lan_dev">
+<ports>0 2 3 4 5</ports>
+<device>switch0</device>
+<vlan>1</vlan>
+</switch_vlan>
+<switch_vlan name="wan_dev">
+<ports>0 1</ports>
+<device>switch0</device>
+<vlan>4094</vlan>
+</switch_vlan>
+</switch>
+<protocol>
+<interface name="wan">
+<mactype>default</mactype>
+</interface>
+<proto name="dhcp">
+<ifname>eth0.4094</ifname>
+<pri_dns>0.0.0.0</pri_dns>
+<mtu>1500</mtu>
+<dns_mode>dynamic</dns_mode>
+<hostname>Archer_C7</hostname>
+<wan_type>dhcp</wan_type>
+<snd_dns>0.0.0.0</snd_dns>
+<unicast>off</unicast>
+</proto>
+<proto name="static">
+<auto>0</auto>
+<mtu>1500</mtu>
+<wan_type>static</wan_type>
+<proto>static</proto>
+<ifname>eth0.4094</ifname>
+</proto>
+<proto name="bigpond">
+<auto>0</auto>
+<mtu>1500</mtu>
+<conn_mode>auto</conn_mode>
+<demand_idle>15</demand_idle>
+<manual_idle>15</manual_idle>
+<wan_type>bigpond</wan_type>
+<proto>bigpond</proto>
+<ifname>eth0.4094</ifname>
+</proto>
+<proto name="pppoe">
+<ifname>eth0.4094</ifname>
+<time_start>00:00</time_start>
+<mtu>1480</mtu>
+<conn_mode>auto</conn_mode>
+<dns_mode>dynamic</dns_mode>
+<wan_type>pppoe</wan_type>
+<interval>10</interval>
+<snd_conn>none</snd_conn>
+<specific_ip>0.0.0.0</specific_ip>
+<manual_idle>15</manual_idle>
+<time_end>23:59</time_end>
+<demand_idle>15</demand_idle>
+<ip_mode>dynamic</ip_mode>
+</proto>
+<proto name="l2tp">
+<snd_conn>dynamic</snd_conn>
+<conn_mode>auto</conn_mode>
+<demand_idle>15</demand_idle>
+<manual_idle>15</manual_idle>
+<wan_type>l2tp</wan_type>
+<mtu>1460</mtu>
+<ifname>eth0.4094</ifname>
+</proto>
+<proto name="pptp">
+<snd_conn>dynamic</snd_conn>
+<conn_mode>auto</conn_mode>
+<demand_idle>15</demand_idle>
+<manual_idle>15</manual_idle>
+<wan_type>pptp</wan_type>
+<mtu>1420</mtu>
+<ifname>eth0.4094</ifname>
+</proto>
+<interface name="wanv6">
+<enable>off</enable>
+<proto>none</proto>
+</interface>
+<proto name="staticv6">
+<auto>0</auto>
+<mtu>1500</mtu>
+<wan_type>staticv6</wan_type>
+<proto>static</proto>
+<ifname>eth0.4094</ifname>
+</proto>
+<proto name="dhcpv6">
+<auto>0</auto>
+<lanif>br-lan</lanif>
+<peerdns>1</peerdns>
+<ip_config>auto</ip_config>
+<ip_mode>prefix</ip_mode>
+<wan_type>dhcp6c</wan_type>
+<dns_mode>dynamic</dns_mode>
+<proto>dhcp6c</proto>
+<ifname>eth0.4094</ifname>
+</proto>
+<proto name="pppoev6">
+<auto>0</auto>
+<lanif>br-lan</lanif>
+<dns_mode>dynamic</dns_mode>
+<mru>1492</mru>
+<ip_mode>prefix</ip_mode>
+<ip_config>auto</ip_config>
+<dns_mode>dynamic</dns_mode>
+<peerdns>1</peerdns>
+<wan_type>pppoev6</wan_type>
+<proto>pppoev6</proto>
+<keeplive>5 20</keeplive>
+<ifname>eth0.4094</ifname>
+</proto>
+<proto name="pppoeshare">
+<auto>0</auto>
+<lanif>br-lan</lanif>
+<mru>1492</mru>
+<wan_type>pppoe</wan_type>
+<proto>pppoeshare</proto>
+<keeplive>5 20</keeplive>
+<ifname>eth0</ifname>
+<conn_mode>auto</conn_mode>
+<enable>on</enable>
+<connectable>1</connectable>
+</proto>
+<proto name="6to4">
+<ifname>eth0.4094</ifname>
+<auto>0</auto>
+<dns_mode>dynamic</dns_mode>
+<wan_type>6to4</wan_type>
+<ttl>255</ttl>
+<proto>6to4</proto>
+</proto>
+<proto name="6rd">
+<ifname>eth0.4094</ifname>
+<ip_mode>auto</ip_mode>
+<auto>0</auto>
+<wan_type>6rd</wan_type>
+<ttl>255</ttl>
+<proto>6rd</proto>
+</proto>
+<proto name="dslite">
+<ifname>eth0.4094</ifname>
+<auto>0</auto>
+<wan_type>dslite</wan_type>
+<proto>dslite</proto>
+<snd_conn>dynamic</snd_conn>
+<dynamic_ip_config>dhcpv6</dynamic_ip_config>
+<dynamic_ip_mode>non_temp</dynamic_ip_mode>
+<dynamic_dns_mode>dynamic</dynamic_dns_mode>
+<pppoe_dns_mode>dynamic</pppoe_dns_mode>
+<pppoe_ip_mode>non_temp</pppoe_ip_mode>
+<pppoe_ip_config>dhcpv6</pppoe_ip_config>
+<keeplive>5 20</keeplive>
+<lanif>br-lan</lanif>
+<ifname>eth0.4094</ifname>
+<ttl>255</ttl>
+<mtu>1492</mtu>
+<static_mtu>1500</static_mtu>
+</proto>
+<proto name="passthrough">
+<ifname>eth0.4094</ifname>
+<auto>0</auto>
+<wan_type>passthrough</wan_type>
+<ttl>255</ttl>
+<proto>passthrough</proto>
+</proto>
+<proto name="dhcp6s">
+<auto>1</auto>
+<prefixlen>64</prefixlen>
+<leasetime>86400</leasetime>
+<endip>2000</endip>
+<startip>1000</startip>
+<proto>dhcp6s</proto>
+<ifname>br-lan</ifname>
+</proto>
+<proto name="slaac">
+<auto>1</auto>
+<prefixlen>64</prefixlen>
+<proto>slaac</proto>
+<ifname>br-lan</ifname>
+</proto>
+<proto name="rdnss">
+<auto>1</auto>
+<rdnss_prefix_type>static</rdnss_prefix_type>
+<prefixlen>64</prefixlen>
+<proto>rdnss</proto>
+<ifname>br-lan</ifname>
+</proto>
+<interface name="lan">
+<mask_type>255.255.255.0</mask_type>
+</interface>
+<connproto name="ipv4">
+<list>
+<protos>static</protos>
+<protos>dhcp</protos>
+<protos>pppoe</protos>
+<protos>bigpond</protos>
+<protos>l2tp</protos>
+<protos>pptp</protos>
+</list>
+</connproto>
+<connproto name="ipv6">
+<list>
+<protos>staticv6</protos>
+<protos>dhcpv6</protos>
+<protos>pppoev6</protos>
+<protos>6to4</protos>
+<protos>6rd</protos>
+<protos>dslite</protos>
+<protos>passthrough</protos>
+</list>
+</connproto>
+<network name="backup">
+<enable>on</enable>
+<preferred>2</preferred>
+</network>
+</protocol>
+<amazon_ffs>
+<base name="ffs">
+<enable>off</enable>
+<wireless_iface>ath04</wireless_iface>
+<list>
+<fw_white_domain>setup.amazon-dss.com</fw_white_domain>
+<fw_white_domain>dp-sps-na.amazon.com</fw_white_domain>
+<fw_white_domain>dp-sps-eu.amazon.com</fw_white_domain>
+<fw_white_domain>dp-sps-jp.amazon.com</fw_white_domain>
+</list>
+<list>
+<fw_white_ip>52.46.140.31</fw_white_ip>
+<fw_white_ip>52.46.144.109</fw_white_ip>
+<fw_white_ip>52.46.158.149</fw_white_ip>
+<fw_white_ip>3.83.171.135</fw_white_ip>
+<fw_white_ip>3.83.168.136</fw_white_ip>
+<fw_white_ip>3.83.170.135</fw_white_ip>
+<fw_white_ip>52.95.114.155</fw_white_ip>
+<fw_white_ip>52.95.119.57</fw_white_ip>
+<fw_white_ip>52.95.122.61</fw_white_ip>
+<fw_white_ip>63.34.62.219</fw_white_ip>
+<fw_white_ip>63.34.61.219</fw_white_ip>
+<fw_white_ip>63.34.60.219</fw_white_ip>
+<fw_white_ip>52.119.163.183</fw_white_ip>
+<fw_white_ip>52.119.166.149</fw_white_ip>
+<fw_white_ip>52.119.170.97</fw_white_ip>
+<fw_white_ip>34.223.27.86</fw_white_ip>
+<fw_white_ip>34.223.26.86</fw_white_ip>
+<fw_white_ip>34.223.25.87</fw_white_ip>
+</list>
+<list>
+<fw_white_protocol>tcp</fw_white_protocol>
+<fw_white_protocol>udp</fw_white_protocol>
+</list>
+<list>
+<fw_white_port>443</fw_white_port>
+</list>
+<list>
+<in_white_protocol>tcp</in_white_protocol>
+<in_white_protocol>udp</in_white_protocol>
+</list>
+<list>
+<in_white_port>53</in_white_port>
+<in_white_port>67</in_white_port>
+</list>
+</base>
+<interface>
+<ipaddr>192.168.1.1</ipaddr>
+<netmask>255.255.255.0</netmask>
+<igmp_snooping>0</igmp_snooping>
+<proto>static</proto>
+<type>bridge</type>
+<ifname></ifname>
+<gateway></gateway>
+<lan_type>dynamic</lan_type>
+</interface>
+<dhcp>
+<ignore>0</ignore>
+<force>1</force>
+<limit>150</limit>
+<leasetime>120m</leasetime>
+<start>100</start>
+<interface>wifi</interface>
+<list>
+<dhcp_option>3,192.168.1.1</dhcp_option>
+</list>
+</dhcp>
+<wifi-iface>
+<ifname></ifname>
+<access>off</access>
+<encryption>none</encryption>
+<enable>on</enable>
+<isolate>on</isolate>
+<psk_cipher>aes</psk_cipher>
+<mode>ap</mode>
+<ssid>simple_setup</ssid>
+<device>wifi0</device>
+<hidden>on</hidden>
+<psk_version>rsn</psk_version>
+<wds>off</wds>
+<maxsta>15</maxsta>
+</wifi-iface>
+</amazon_ffs>
+<wireless>
+<global name="update_enc">
+<update_enable>yes</update_enable>
+</global>
+<smart-connect name="smart">
+<smart_enable>off</smart_enable>
+</smart-connect>
+<wifi-device name="wifi0">
+<disabled>off</disabled>
+<disabled_all>off</disabled_all>
+<enable_macreq>1</enable_macreq>
+<frag>2346</frag>
+<wpa_group_rekey>0</wpa_group_rekey>
+<isolate>off</isolate>
+<hwmode></hwmode>
+<shortgi>on</shortgi>
+<wmm>on</wmm>
+<disablestats>0</disablestats>
+<mu_mimo>on</mu_mimo>
+<htmode>auto</htmode>
+<band></band>
+<type>qcawifi</type>
+<country>DE</country>
+<beacon_int>100</beacon_int>
+<phy>wifi0</phy>
+<dtim_period>1</dtim_period>
+<channel>auto</channel>
+<rts>2346</rts>
+<macaddr></macaddr>
+<txpower>high</txpower>
+</wifi-device>
+<wifi-iface name="ath0">
+<ifname>ath0</ifname>
+<wnm>1</wnm>
+<rrm>1</rrm>
+<onemesh_ie>on</onemesh_ie>
+<wps_timeout>120</wps_timeout>
+<wpa_cipher>auto</wpa_cipher>
+<wps_label>on</wps_label>
+<wep_format2>hex</wep_format2>
+<device>wifi0</device>
+<wep_type2>64</wep_type2>
+<hidden>off</hidden>
+<wep_mode>auto</wep_mode>
+<psk_version>rsn</psk_version>
+<wps_pin></wps_pin>
+<wps_pbc>on</wps_pbc>
+<encryption></encryption>
+<enable>on</enable>
+<wpa_version>auto</wpa_version>
+<port>1812</port>
+<mode>ap</mode>
+<wep_select>1</wep_select>
+<ssid>TP-Link_HOME_2G</ssid>
+<wps>on</wps>
+<wep_format1>hex</wep_format1>
+<wds>on</wds>
+<psk_cipher>aes</psk_cipher>
+<wep_type1>64</wep_type1>
+<wep_format4>hex</wep_format4>
+<wps_state>1</wps_state>
+<wep_type3>64</wep_type3>
+<wep_format3>hex</wep_format3>
+<wep_type4>64</wep_type4>
+</wifi-iface>
+<wifi-iface name="ath01">
+<ifname>ath01</ifname>
+<access>off</access>
+<onemesh_ie>off</onemesh_ie>
+<encryption></encryption>
+<enable>off</enable>
+<isolate>on</isolate>
+<psk_cipher>aes</psk_cipher>
+<mode>ap</mode>
+<ssid>TP-Link_GUEST_2G</ssid>
+<device>wifi0</device>
+<hidden>off</hidden>
+<psk_version>rsn</psk_version>
+<guest>on</guest>
+<wds>on</wds>
+</wifi-iface>
+<wifi-iface name="ath02">
+<ifname>ath02</ifname>
+<encryption>none</encryption>
+<enable>off</enable>
+<psk_cipher>auto</psk_cipher>
+<mode>sta</mode>
+<wep_select>1</wep_select>
+<wep_format2>hex</wep_format2>
+<wep_format3>hex</wep_format3>
+<device>wifi0</device>
+<wep_format1>hex</wep_format1>
+<wep_format4>hex</wep_format4>
+<wep_mode>auto</wep_mode>
+<psk_version>auto</psk_version>
+<wep_type3>64</wep_type3>
+<wep_type2>64</wep_type2>
+<wep_type1>64</wep_type1>
+<wds_mode>2</wds_mode>
+<wep_type4>64</wep_type4>
+<wds>on</wds>
+</wifi-iface>
+<wifi-device name="wifi1">
+<disabled>off</disabled>
+<disabled_all>off</disabled_all>
+<enable_macreq>1</enable_macreq>
+<frag>2346</frag>
+<wpa_group_rekey>0</wpa_group_rekey>
+<isolate>off</isolate>
+<hwmode></hwmode>
+<shortgi>on</shortgi>
+<wmm>on</wmm>
+<mu_mimo>on</mu_mimo>
+<htmode>auto</htmode>
+<band></band>
+<type>qcawifi</type>
+<country>DE</country>
+<beacon_int>100</beacon_int>
+<phy>wifi1</phy>
+<dtim_period>1</dtim_period>
+<channel>auto</channel>
+<rts>2346</rts>
+<macaddr></macaddr>
+<txpower>high</txpower>
+</wifi-device>
+<wifi-iface name="ath1">
+<wnm>1</wnm>
+<rrm>1</rrm>
+<onemesh_ie>on</onemesh_ie>
+<ifname>ath1</ifname>
+<wps_timeout>120</wps_timeout>
+<wpa_cipher>auto</wpa_cipher>
+<wps_label>on</wps_label>
+<wep_format2>hex</wep_format2>
+<device>wifi1</device>
+<wep_type2>64</wep_type2>
+<hidden>off</hidden>
+<wep_mode>auto</wep_mode>
+<psk_version>rsn</psk_version>
+<wps_pin></wps_pin>
+<wps_pbc>on</wps_pbc>
+<encryption></encryption>
+<enable>on</enable>
+<wpa_version>auto</wpa_version>
+<port>1812</port>
+<mode>ap</mode>
+<wep_select>1</wep_select>
+<ssid>TP-Link_HOME_5G</ssid>
+<wps>on</wps>
+<wep_format1>hex</wep_format1>
+<wds>on</wds>
+<psk_cipher>aes</psk_cipher>
+<wep_type1>64</wep_type1>
+<wep_format4>hex</wep_format4>
+<wps_state>1</wps_state>
+<wep_type3>64</wep_type3>
+<wep_format3>hex</wep_format3>
+<wep_type4>64</wep_type4>
+</wifi-iface>
+<wifi-iface name="ath11">
+<ifname>ath11</ifname>
+<access>off</access>
+<onemesh_ie>off</onemesh_ie>
+<encryption></encryption>
+<enable>off</enable>
+<isolate>on</isolate>
+<psk_cipher>aes</psk_cipher>
+<mode>ap</mode>
+<ssid>TP-Link_GUEST_5G</ssid>
+<device>wifi1</device>
+<hidden>off</hidden>
+<psk_version>rsn</psk_version>
+<guest>on</guest>
+<wds>on</wds>
+</wifi-iface>
+<wifi-iface name="ath12">
+<ifname>ath12</ifname>
+<encryption>none</encryption>
+<enable>off</enable>
+<psk_cipher>auto</psk_cipher>
+<mode>sta</mode>
+<wep_select>1</wep_select>
+<wep_format2>hex</wep_format2>
+<wep_format3>hex</wep_format3>
+<device>wifi1</device>
+<wep_format1>hex</wep_format1>
+<wep_format4>hex</wep_format4>
+<wep_mode>auto</wep_mode>
+<psk_version>auto</psk_version>
+<wep_type3>64</wep_type3>
+<wep_type2>64</wep_type2>
+<wep_type1>64</wep_type1>
+<wds_mode>2</wds_mode>
+<wep_type4>64</wep_type4>
+<wds>on</wds>
+</wifi-iface>
+<mac-filter name="filter">
+<action>deny</action>
+<enable>off</enable>
+</mac-filter>
+<wps-device name="wps">
+<os_version>1.0</os_version>
+<wps_manufacturer></wps_manufacturer>
+<serial_number>Archer C7 v5</serial_number>
+<model_url>http://192.168.0.1:80/</model_url>
+<wps_device_type>6-0050F204-1</wps_device_type>
+<model_name></model_name>
+<wps_uuid>87654321-9abc-def0-1234</wps_uuid>
+<model_number>1.0</model_number>
+<wps_device_name>ArcherC7v5</wps_device_name>
+<wps_manufacturer_url></wps_manufacturer_url>
+</wps-device>
+</wireless>
+<nrd>
+<config name="config">
+<Enable>1</Enable>
+<PHYBasedPrioritization>1</PHYBasedPrioritization>
+</config>
+<wlanif name="radio_2g">
+<radio>wifi0</radio>
+<vaps>ath0</vaps>
+</wlanif>
+<wlanif name="radio_5g">
+<radio>wifi1</radio>
+<vaps>ath1</vaps>
+</wlanif>
+<IdleSteer name="IdleSteer">
+<OverloadInactTimeout>4</OverloadInactTimeout>
+<RSSISteeringPoint_UG>20</RSSISteeringPoint_UG>
+<InactCheckInterval>1</InactCheckInterval>
+<RSSISteeringPoint_DG>5</RSSISteeringPoint_DG>
+<NormalInactTimeout>4</NormalInactTimeout>
+<AuthAllow>0</AuthAllow>
+</IdleSteer>
+<ActiveSteer name="ActiveSteer">
+<RateRSSIXingThreshold_DG>0</RateRSSIXingThreshold_DG>
+<RateRSSIXingThreshold_UG>40</RateRSSIXingThreshold_UG>
+<TxRateXingThreshold_UG>50000</TxRateXingThreshold_UG>
+<TxRateXingThreshold_DG>6000</TxRateXingThreshold_DG>
+</ActiveSteer>
+<APSteer name="APSteer">
+<LowRSSIAPSteerThreshold_RE_W5>26</LowRSSIAPSteerThreshold_RE_W5>
+<LowRSSIAPSteerThreshold_RE_W2>30</LowRSSIAPSteerThreshold_RE_W2>
+<APSteerToRootMinRSSIIncThreshold>5</APSteerToRootMinRSSIIncThreshold>
+<LowRSSIAPSteerThreshold_CAP_W5>28</LowRSSIAPSteerThreshold_CAP_W5>
+<LowRSSIAPSteerThreshold_CAP_W2>28</LowRSSIAPSteerThreshold_CAP_W2>
+<DownlinkRSSIThreshold_W5>-65</DownlinkRSSIThreshold_W5>
+<APSteerToPeerMinRSSIIncThreshold>5</APSteerToPeerMinRSSIIncThreshold>
+<APSteerToLeafMinRSSIIncThreshold>5</APSteerToLeafMinRSSIIncThreshold>
+</APSteer>
+<NetDB name="NetDB">
+<DiscoverByScan>0</DiscoverByScan>
+<ScanFrequency>60</ScanFrequency>
+<MinChannelTime>40</MinChannelTime>
+<MaxChannelTime>60</MaxChannelTime>
+<AgeFrequency>180</AgeFrequency>
+<RemoteBSSMaxAge>3600</RemoteBSSMaxAge>
+</NetDB>
+<StaDB name="StaDB">
+<IncludeOutOfNetwork>1</IncludeOutOfNetwork>
+<OutOfNetworkMaxAge>300</OutOfNetworkMaxAge>
+<InNetworkMaxAge>2592000</InNetworkMaxAge>
+<AgingFrequency>60</AgingFrequency>
+<PollFrequency>1</PollFrequency>
+<NumRemoteBSSes>8</NumRemoteBSSes>
+<AgingSizeThreshold>100</AgingSizeThreshold>
+<PopulateNonServingPHYInfo>1</PopulateNonServingPHYInfo>
+<MarkAdvClientAsDualBand>1</MarkAdvClientAsDualBand>
+<AgeLimit>3</AgeLimit>
+</StaDB>
+<TriggerMonitor name="TriggerMonitor">
+<RSSIMeasureSamples_W5>5</RSSIMeasureSamples_W5>
+<RSSIMeasureSamples_W2>5</RSSIMeasureSamples_W2>
+<ThresholdEstimator>0</ThresholdEstimator>
+</TriggerMonitor>
+<config name="config_Adv">
+<AgeLimit>3</AgeLimit>
+</config>
+<Estimator_Adv name="Estimator_Adv">
+<ProbeCountThreshold>3</ProbeCountThreshold>
+<StatsSampleInterval>0</StatsSampleInterval>
+<StatsSampleIntervalUsec>200000</StatsSampleIntervalUsec>
+<RSSIDiff_EstW2FromW5>5</RSSIDiff_EstW2FromW5>
+<EnableContinuousThroughput>0</EnableContinuousThroughput>
+<RSSIDiff_EstW5FromW2>-15</RSSIDiff_EstW5FromW2>
+<PhyRateScalingForAirtime>50</PhyRateScalingForAirtime>
+<BcnrptActiveDuration>50</BcnrptActiveDuration>
+<11kProhibitTimeShort>5</11kProhibitTimeShort>
+<11kProhibitTimeLong>30</11kProhibitTimeLong>
+<BcnrptPassiveDuration>200</BcnrptPassiveDuration>
+<InterferenceAgeLimit>15</InterferenceAgeLimit>
+</Estimator_Adv>
+<SteerExec name="SteerExec_Adv">
+<SteeringProhibitTime>12</SteeringProhibitTime>
+<BTMSteeringProhibitShortTime>6</BTMSteeringProhibitShortTime>
+<MinRSSIBestEffort>12</MinRSSIBestEffort>
+<InitialAuthRejCoalesceTime>1</InitialAuthRejCoalesceTime>
+<BlacklistTime>300</BlacklistTime>
+<AuthRejMax>3</AuthRejMax>
+<MaxBTMUnfriendly>360</MaxBTMUnfriendly>
+<LowRSSIXingThreshold>10</LowRSSIXingThreshold>
+<SteeringUnfriendlyTime>180</SteeringUnfriendlyTime>
+<BTMResponseTime>5</BTMResponseTime>
+<BTMAlsoBlacklist>1</BTMAlsoBlacklist>
+<TargetLowRSSIThreshold_W2>5</TargetLowRSSIThreshold_W2>
+<MaxBTMActiveUnfriendly>360</MaxBTMActiveUnfriendly>
+<BTMUnfriendlyTime>90</BTMUnfriendlyTime>
+<MaxSteeringUnfriendly>720</MaxSteeringUnfriendly>
+<TSteering>5</TSteering>
+<TargetLowRSSIThreshold_W5>12</TargetLowRSSIThreshold_W5>
+<BTMAssociationTime>2</BTMAssociationTime>
+<StartInBTMActiveState>1</StartInBTMActiveState>
+<MaxConsecutiveBTMFailuresAsActive>4</MaxConsecutiveBTMFailuresAsActive>
+</SteerExec>
+<SteerAlg_Adv name="SteerAlg_Adv">
+<MinTxRateIncreaseThreshold>53</MinTxRateIncreaseThreshold>
+<MaxSteeringTargetCount>1</MaxSteeringTargetCount>
+</SteerAlg_Adv>
+</nrd>
+<iptv>
+<global name="iptv">
+<enable>off</enable>
+<mode>Bridge</mode>
+<internet_tag>off</internet_tag>
+<internet_vid>0</internet_vid>
+<internet_vprio>0</internet_vprio>
+<ipphone_vid>0</ipphone_vid>
+<ipphone_vprio>0</ipphone_vprio>
+<iptv_vid>0</iptv_vid>
+<iptv_vprio>0</iptv_vprio>
+<mciptv_enable>off</mciptv_enable>
+<mciptv_vid>0</mciptv_vid>
+<mciptv_vprio>0</mciptv_vprio>
+<lan_reversal_flag>off</lan_reversal_flag>
+<lan1>Internet</lan1>
+<lan2>Internet</lan2>
+<lan3>IPTV</lan3>
+<lan4>IPTV</lan4>
+<wan>eth0.4094</wan>
+<lan>eth0.1</lan>
+<igmp_enable>on</igmp_enable>
+<igmp_version>2</igmp_version>
+<igmp_snooping_enable>off</igmp_snooping_enable>
+<udp_proxy>4022</udp_proxy>
+<udp_proxy_enable>off</udp_proxy_enable>
+<handle_time>30</handle_time>
+<mcwifi_enable>on</mcwifi_enable>
+</global>
+</iptv>
+<dhcp6s>
+<dhcp6s name="basic">
+<enabled>0</enabled>
+<proto>dhcp6s</proto>
+<interface>lanv6</interface>
+<ifname>br-lan</ifname>
+<primary_dns></primary_dns>
+<secondary_dns></secondary_dns>
+<startip></startip>
+<endip></endip>
+<leasetime>86400</leasetime>
+<config_file>/etc/dhcp6s.conf</config_file>
+</dhcp6s>
+</dhcp6s>
+<mcproxy>
+<mcproxy name="config">
+<protocol>IGMPv3</protocol>
+</mcproxy>
+<pinstance>
+<name>mcproxy1</name>
+<upstream></upstream>
+<downstreams></downstreams>
+</pinstance>
+</mcproxy>
+<portspeed>
+<portspeed name="wan">
+<port>1</port>
+<supported>auto,1000F,100F,100H,10F,10H</supported>
+<current>auto</current>
+</portspeed>
+</portspeed>
+<sysmode>
+<global name="sysmode">
+<support>yes</support>
+<mode>router</mode>
+</global>
+<global name="router">
+</global>
+<global name="ap">
+</global>
+</sysmode>
+<wireless_schedule>
+<global name="2g">
+<enable>off</enable>
+<calendar></calendar>
+</global>
+<global name="5g">
+<enable>off</enable>
+<calendar></calendar>
+</global>
+</wireless_schedule>
+<factory>
+<global name="factorymode">
+<enable>no</enable>	
+</global>
+</factory>
+<switch_mgmt>
+<vlan>
+<vid>1</vid>
+<pid>0 2 3 4 5</pid>
+<own>NULL</own>
+</vlan>
+<vlan>
+<vid>4094</vid>
+<pid>0 1</pid>
+<own>NULL</own>
+</vlan>
+</switch_mgmt>
+<openvpn>
+<openvpn name="server">
+<access>home</access>
+<ca>/etc/openvpn/ca.crt</ca>
+<cert>/etc/openvpn/server.crt</cert>
+<cipher>AES-128-CBC</cipher>
+<comp_lzo>yes</comp_lzo>
+<dev>tun</dev>
+<dh>/etc/openvpn/dh1024.pem</dh>
+<duplicate_cn>1</duplicate_cn>
+<enabled>off</enabled>
+<ifconfig_pool_persist>/tmp/ipp.txt</ifconfig_pool_persist>
+<keepalive>10 120</keepalive>
+<key>/etc/openvpn/server.key</key>
+<management>localhost 7505</management>
+<max_clients>10</max_clients>
+<persist_key>1</persist_key>
+<persist_tun>1</persist_tun>
+<client_to_client>1</client_to_client>
+<port>1194</port>
+<proto>udp</proto>
+<server>10.8.0.0 255.255.255.0</server>
+<status>/tmp/openvpn-status.log 5</status>
+<status_version>2</status_version>
+<verb>3</verb>
+</openvpn>
+</openvpn>
+<pptpd>
+<login name="account">
+<password>admin</password>
+<username>admin</username>
+</login>
+<service name="pptpd">
+<enabled>off</enabled>
+<localip>10.0.0.1</localip>
+<remoteip>10.0.0.11-20</remoteip>
+<samba_access>on</samba_access>
+<netbios_pass>on</netbios_pass>
+<unencrypted_access>on</unencrypted_access>
+<connections>10</connections>
+</service>
+</pptpd>
+<wportal>
+<wportal name="starttime">
+<seconds>0</seconds>
+</wportal>
+<wportal name="defcfg">
+<defcfg>yes</defcfg>
+</wportal>
+<wportal name="wanerror">
+<enable>yes</enable>
+</wportal>
+<wportal name="upgrade">
+<enable>yes</enable>
+<time>0</time>
+</wportal>
+</wportal>
+<cloud_config>
+<router_post name="login">
+</router_post>
+<cloud_push name="new_firmware">
+</cloud_push>
+<cloud_reply name="device_status">
+<bind_status>0</bind_status>
+<need_unbind>0</need_unbind>
+<need_checkupgrade>1</need_checkupgrade>
+</cloud_reply>
+<cloud_reply name="upgrade_info">
+</cloud_reply>
+<cloud_device name="info">
+<alias_changed>false</alias_changed>
+<alias>Archer_C7</alias>
+</cloud_device>
+</cloud_config>
+<cloud_status>
+<cloud_client name="client_info">
+<reconnect_time>0</reconnect_time>
+<disconnect_reason>0</disconnect_reason>
+<fw_download_progress>0</fw_download_progress>
+<connect_status>0</connect_status>
+</cloud_client>
+<router_request name="ddns_register">
+<owner>0</owner>
+<action_status>0</action_status>
+<err_code>0</err_code>
+</router_request>
+<router_request name="ddns_bind">
+<owner>0</owner>
+<action_status>0</action_status>
+<err_code>0</err_code>
+</router_request>
+<router_request name="ddns_unbind">
+<owner>0</owner>
+<action_status>0</action_status>
+<err_code>0</err_code>
+</router_request>
+<router_request name="ddns_unbind_all">
+<owner>0</owner>
+<action_status>0</action_status>
+<err_code>0</err_code>
+</router_request>
+<router_request name="ddns_get_domain_list">
+<owner>0</owner>
+<action_status>0</action_status>
+<err_code>0</err_code>
+</router_request>
+<router_request name="ddns_delete">
+<owner>0</owner>
+<action_status>0</action_status>
+<err_code>0</err_code>
+</router_request>
+</cloud_status>
+<cloud_svr>
+<svr name="cloud">
+<domain>devs.tplinkcloud.com</domain>
+<port>50443</port>
+</svr>
+<svr name="default">
+<heartbeat_interval_ms>235000</heartbeat_interval_ms>
+<request_timeout_ms>5000</request_timeout_ms>
+<max_message_number>1000</max_message_number>
+<max_client_number>20</max_client_number>
+<cer_file>/tmp/etc/2048_newroot.cer</cer_file>
+</svr>
+<svr name="module">
+<cloud_kit>/usr/lib/libcloud-kit.so</cloud_kit>
+</svr>
+</cloud_svr>
+<feedback>
+<account name="account">
+<username></username>
+<email></email>
+<phoneNum></phoneNum>
+<country></country>
+<isp></isp>
+<config>off</config>
+<syslog>off</syslog>
+</account>
+</feedback>
+<modem>
+	<usbmodeminfo name="modeminfo">
+		<defaultvid>0000</defaultvid>
+		<defaultpid>0000</defaultpid>
+		<targetvid>0000</targetvid>
+		<targetpid>0000</targetpid>
+		<modeswitch>1</modeswitch>
+		<proto>dhcp</proto>
+		<cport>ttyUSB0</cport>
+		<dport>ttyUSB0</dport>
+		<ifname>usb0</ifname>
+		<message1>11111</message1>
+		<message2>22222</message2>
+		<message3>33333</message3>
+		<modem_type>Modem</modem_type>
+	</usbmodeminfo>
+	<usbmodemisp name="modemisp">
+		<setisp>auto</setisp>
+		<locindex>341</locindex>
+		<ispindex>0</ispindex>
+		<pinlock>0</pinlock>
+		<pincode></pincode>
+		<dial_num>*99#</dial_num>
+		<apn>internet.beeline.ru</apn>
+		<username>beeline</username>
+		<password>beeline</password>
+		<authentype>0</authentype>
+		<modem_signal>32</modem_signal>
+		<ispstatus>0</ispstatus>
+	</usbmodemisp>
+	<usbmodemisp name="modemconf">
+		<modemstatus>0</modemstatus>
+		<mode>cable</mode>
+		<connectmode>auto</connectmode>
+		<maxidletime>15</maxidletime>
+		<mtu>1480</mtu>
+		<manualdns>off</manualdns>
+		<primarydns></primarydns>
+		<seconddns></seconddns>
+		<connectstatus>0</connectstatus>		
+	</usbmodemisp>
+</modem>
+<ifttt_trigger>
+<ifttt_config name="ifttt_config">
+<factory_id>0</factory_id>
+</ifttt_config>
+</ifttt_trigger>
+<smart_home>
+<info name="info">
+<enable>0</enable>
+</info>
+</smart_home>
+<history_list>
+</history_list>
+<client_mgmt>
+<global name="info">
+</global>
+</client_mgmt>
+<onemesh>
+<onemesh name="onemesh">
+<role>master</role>
+<group_id>-1</group_id>
+<enable>on</enable>
+</onemesh>
+<wifi-iface name="ath03">
+<ifname>ath03</ifname>
+<device>wifi0</device>
+<mode>ap</mode>
+<wds>on</wds>
+<hidden>on</hidden>
+<enable>on</enable>
+<encryption>psk</encryption>
+<psk_cipher>aes</psk_cipher>
+<psk_version>rsn</psk_version>
+<ssid>onemesh_config_2g</ssid>
+<psk_key>12345678</psk_key>
+<onemesh_ie>on</onemesh_ie>
+<isolate>off</isolate>
+</wifi-iface>
+<wifi-iface name="ath13">
+<ifname>ath13</ifname>
+<device>wifi1</device>
+<mode>ap</mode>
+<wds>on</wds>
+<hidden>on</hidden>
+<enable>on</enable>
+<encryption>psk</encryption>
+<psk_cipher>aes</psk_cipher>
+<psk_version>rsn</psk_version>
+<ssid>onemesh_config_5g</ssid>
+<psk_key>12345678</psk_key>
+<onemesh_ie>on</onemesh_ie>
+<isolate>off</isolate>
+</wifi-iface>
+</onemesh>
+<onemesh_client>
+</onemesh_client>
+</config>
+<RU>
+<locale>
+<global name="sysinfo">
+<country>RU</country>
+<default>ru_RU</default>
+<locale>ru_RU</locale>
+</global>
+</locale>
+<system>
+<system name="system">
+<timezone>GMT+03:00</timezone>
+</system>
+<dst name="dst">
+<dst_enable>off</dst_enable>
+</dst>
+</system>
+<wireless>
+<wifi-device name="wifi0">
+<htmode>auto</htmode>
+</wifi-device>
+</wireless>
+<protocol>
+<interface name="wanv6">
+<enable>off</enable>
+</interface>
+</protocol>
+</RU>
+<KR>
+<locale>
+<global name="sysinfo">
+<country>KR</country>
+<default>ko_KR</default>
+<locale>ko_KR</locale>
+</global>
+</locale>
+<system>
+<system name="system">
+<timezone>GMT+09:00</timezone>
+</system>
+<timeserver name="ntp">
+<list>
+<server>kr.pool.ntp.org</server>
+<server>asia.pool.ntp.org</server>
+</list>
+</timeserver>
+<dst name="dst">
+<dst_enable>off</dst_enable>
+</dst>
+</system>
+<wireless>
+<wifi-device name="wifi0">
+<channel>auto</channel>
+<htmode>auto</htmode>
+</wifi-device>
+<wifi-device name="wifi1">
+<htmode>auto</htmode>
+</wifi-device>
+</wireless>
+<nat>
+<nat_dmz name="dmz">
+<name>dmz01</name>
+<enable>disable</enable>
+<ipaddr>0.0.0.0</ipaddr>
+<macaddr>00-00-00-00-00-00</macaddr>
+</nat_dmz>
+</nat>
+<wol>
+<global name="settings">
+<enable>on</enable>
+</global>
+</wol>
+</KR>
+<PL>
+<locale>
+<global name="sysinfo">
+<country>PL</country>
+</global>
+</locale>
+<system>
+<system name="system">
+<timezone>GMT+01:00</timezone>
+</system>
+</system>
+</PL>
+<TW>
+<locale>
+<global name="sysinfo">
+<country>TW</country>
+<default>zh_TW</default>
+<locale>zh_TW</locale>
+</global>
+</locale>
+<system>
+<system name="system">
+<timezone>GMT+08:00</timezone>
+</system>
+<dst name="dst">
+<dst_enable>off</dst_enable>
+</dst>
+</system>
+<wireless>
+<wifi-device name="wifi0">
+<channel>auto</channel>
+</wifi-device>
+<wifi-device name="wifi1">
+<channel>auto</channel>
+</wifi-device>
+</wireless>
+</TW>
+<VN>
+<locale>
+<global name="sysinfo">
+<country>VN</country>
+</global>
+</locale>
+<system>
+<system name="system">
+<timezone>GMT+07:00</timezone>
+</system>
+</system>
+</VN>
+<RO>
+<locale>
+<global name="sysinfo">
+<country>RO</country>
+</global>
+</locale>
+<system>
+<system name="system">
+<timezone>GMT+02:00</timezone>
+</system>
+<dst name="dst">
+<dst_enable>on</dst_enable>
+<start_month>MAR</start_month>
+<start_week>Last</start_week>
+<start_day>SUN</start_day>
+<start_hour>2am</start_hour>
+<end_month>OCT</end_month>
+<end_week>Last</end_week>
+<end_day>SUN</end_day>
+<end_hour>3am</end_hour>
+</dst>
+</system>
+</RO>
+<BR>
+<locale>
+<global name="sysinfo">
+<country>BR</country>
+</global>
+</locale>
+<system>
+<system name="system">
+<timezone>GMT-03:00</timezone>
+</system>
+</system>
+</BR>
+<JP>
+<locale>
+<global name="sysinfo">
+<default>jp_JP</default>
+<locale>jp_JP</locale>
+<country>JP</country>
+</global>
+</locale>
+<system>
+<system name="system">
+<timezone>GMT+09:00</timezone>
+</system>
+<dst name="dst">
+<dst_enable>off</dst_enable>
+</dst>
+</system>
+<wireless>
+<wifi-device name="wifi0">
+<channel>auto</channel>
+<htmode>auto</htmode>
+</wifi-device>
+<wifi-device name="wifi1">
+<channel>auto</channel>
+<htmode>auto</htmode>
+</wifi-device>
+</wireless>
+<network>
+<interface name="wanv6">
+<proto>passthrough</proto>
+<wan_type>passthrough</wan_type>
+<conn_mode>auto</conn_mode>
+<connectable>1</connectable>
+<passtype>pass</passtype>
+</interface>
+</network>
+<protocol>
+<interface name="wanv6">
+<enable>on</enable>
+<proto>passthrough</proto>
+<proto_name>passthrough</proto_name>
+</interface>
+</protocol>
+<iptv>
+<global>
+<igmp_snooping_enable>on</igmp_snooping_enable>
+</global>
+</iptv>
+</JP>
+<CA>
+<locale>
+<global name="sysinfo">
+<country>CA</country>
+</global>
+</locale>
+<system>
+<system name="system">
+<timezone>GMT-05:00</timezone>
+</system>
+</system>
+</CA>
+<SA>
+<locale>
+<global name="sysinfo">
+<country>SA</country>
+</global>
+</locale>
+<system>
+<system name="system">
+<timezone>GMT+03:00</timezone>
+</system>
+</system>
+</SA>
+<INA>
+<locale>
+<global name="sysinfo">
+<country>INA</country>
+</global>
+</locale>
+<system>
+<system name="system">
+<timezone>GMT+07:00</timezone>
+</system>
+</system>
+</INA>
+<US>
+<locale>
+<global name="sysinfo">
+<country>US</country>
+</global>
+</locale>
+<system>
+<system name="system">
+<timezone>GMT-08:00</timezone>
+</system>
+</system>
+</US>
+<DE>
+<locale>
+<global name="sysinfo">
+<country>DE</country>
+</global>
+</locale>
+<system>
+<system name="system">
+<timezone>GMT-00:00</timezone>
+</system>
+</system>
+</DE>
+<UN>
+<locale>
+<global name="sysinfo">
+<country>UN</country>
+</global>
+</locale>
+<system>
+<system name="system">
+<timezone>GMT-00:00</timezone>
+</system>
+<dst name="dst">
+<dst_enable>off</dst_enable>
+<start_month>Mar</start_month>
+<start_week>2nd</start_week>
+<start_day>Sun</start_day>
+<start_hour>2am</start_hour>
+<end_month>Nov</end_month>
+<end_week>1st</end_week>
+<end_day>Sun</end_day>
+<end_hour>2am</end_hour>
+</dst>
+</system>
+<wireless>
+<wifi-device name="wifi0">
+<channel>auto</channel>
+<htmode>auto</htmode>
+</wifi-device>
+<wifi-device name="wifi1">
+<channel>auto</channel>
+<htmode>auto</htmode>
+</wifi-device>
+</wireless>
+</UN>
